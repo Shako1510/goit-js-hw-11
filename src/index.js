@@ -1,7 +1,7 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { Notify } from 'notiflix';
-import { pixabay } from './pixabay';
+import { getPics } from './pixabay';
 
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '29202884-ba403f8614fd116f5e6699f2a';
@@ -29,7 +29,7 @@ const getUrl = () => {
 };
 
 let query = '';
-const per_page = 40;
+const per_page = 4;
 let currentPage = 1;
 let url = '';
 let lightbox = null;
