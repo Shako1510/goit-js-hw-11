@@ -29,7 +29,7 @@ const getUrl = () => {
 };
 
 let query = '';
-const per_page = 40;
+const per_page = 4;
 let currentPage = 1;
 let url = '';
 let lightbox = null;
@@ -39,9 +39,12 @@ offReadMoreBtn();
 offNoMorePagesMessage();
 
 const renderMarkupGallery = ({ galleryArr, totalHits }) => {
+
+
     if (currentPage === 1) {
         Notify.success(`Hoooray! We found ${totalHits} images!`);
     }
+
     const markupGallery = galleryArr
         .map(img => {
             return `
@@ -89,7 +92,7 @@ const addGallery = ({ isLastRender, markupGallery }) => {
         .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-        top: cardHeight * 11,
+        top: cardHeight * 1,
         behavior: 'smooth',
     });
 };
@@ -119,14 +122,22 @@ const startSearch = async event => {
     offNoMorePagesMessage();
 
     refs.galleryEl.innerHTML = '';
-    query = refs.searchInputEl.value;
+    query = refs.searchInputEl.value.trim();
     refs.searchInputEl.value = '';
-    getUrl();
 
-    await getPics(url).then(showGaleryPage).catch(showErrors);
 
-    createLightBox();
-    lightbox.on('');
+    if (query === '') {
+        return alert('add normal name');
+    } else {
+        getUrl();
+
+        await getPics(url).then(showGaleryPage).catch(showErrors);
+
+        createLightBox();
+        lightbox.on('');
+    }
+
+
 };
 
 const loadMore = async () => {
