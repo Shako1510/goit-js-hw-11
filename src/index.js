@@ -29,7 +29,7 @@ const getUrl = () => {
 };
 
 let query = '';
-const per_page = 4;
+const per_page = 40;
 let currentPage = 1;
 let url = '';
 let lightbox = null;
